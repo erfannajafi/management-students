@@ -8,6 +8,17 @@ $user = new Students();
 
 
 <?php
+if(isset($_GET['delete']))
+{
+?>
+	<p class="alert alert-info">دانش آموز با موفقیت حذف شد</p>
+
+<?php
+}
+?>
+
+
+<?php
 if (isset($_POST['submit']))
 {
 	$name = $_POST['name'];
@@ -45,19 +56,25 @@ if (isset($_POST['submit']))
 			</tr>
 		</thead>
 		<tbody>
+			<?php
+			foreach($user->getAll() as $key => $value)
+			{
+			?>
+				<tr>
+					<td align="center"><?php echo $value['name']; ?></td>
+					<td align="center"><?php echo $value['field']; ?></td>
+					<td align="center"><?php echo $value['age']; ?></td>
 
-			<tr>
-				<td align="center">name</td>
-				<td align="center">filed</td>
-				<td align="center">age</td>
+					<td align="center">
+						<a href="edit-user.php?action=edit&id=<?php echo $value['id']?>" class="text-primary"> ویرایش</a> | 
+						<a href="delete.php?action=delete&id=<?php echo $value['id']?>" class="text-danger" onclick="return confirm('آیا میخواید کاربر حذف شود؟?');"> حذف</a>
+					</td>
+				</tr>
+			<?php
+			}
+			?>
 
-				<td align="center">
-					<a href="edit-user.php?action=edit&id=" class="text-primary"> ویرایش</a> | 
-					<a href="delete.php?action=delete&id=" class="text-danger" onclick="return confirm('آیا میخواید کاربر حذف شود؟?');"> حذف</a>
-				</td>
-			</tr>
 
-			
 		</tbody>
 		</table>
 	</div>

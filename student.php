@@ -40,6 +40,25 @@ class Students
 
 
     }
+
+
+    function getAll()
+    {
+        $sql = "SELECT * FROM $this->table";
+        $stmt = Db::dbPrepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+
+
+    function deleteData($id)
+    {
+        $sql = "DELETE FROM $this->table WHERE id=:id";
+        $stmt = Db::dbPrepare($sql);
+        return $stmt->execute(['id' =>  $id]);
+    }
 }
 
 ?>
