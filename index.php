@@ -1,8 +1,31 @@
 <?php
-require_once("header.php"); 
+require_once("./header.php"); 
+require_once("./student.php");
+
+$user = new Students();
 
 ?>
 
+
+<?php
+if (isset($_POST['submit']))
+{
+	$name = $_POST['name'];
+	$age = $_POST['age'];
+	$filed = $_POST['field'];
+
+
+	$user->setName($name);
+	$user->setAge($age);
+	$user->setField($filed);
+
+	$user->insertData();
+
+
+?>
+	<p class="alert alert-info">دانش آموز با موفقیت ثبت شد</p>
+
+<?php } ?>
 
 <div class="container"dir="rtl">
 	<div class="card my-5">
@@ -39,4 +62,4 @@ require_once("header.php");
 		</table>
 	</div>
 </div>
-<?php require_once("footer.php"); ?>
+<?php require_once("./footer.php"); ?>
