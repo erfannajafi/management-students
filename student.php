@@ -59,6 +59,28 @@ class Students
         $stmt = Db::dbPrepare($sql);
         return $stmt->execute(['id' =>  $id]);
     }
+
+
+
+    function getOneUser($id)
+    {
+        $sql = "SELECT * FROM $this->table WHERE id=:id";
+        $stmt = Db::dbPrepare($sql);
+        $stmt->execute(['id' =>  $id]);
+        return $stmt->fetch();
+    }
+
+
+
+    function updateData($id)
+    {
+        $sql = "UPDATE $this->table SET name=:name , age=:age , field=:field WHERE id=:id";
+        $stmt = Db::dbPrepare($sql);
+
+        return $stmt->execute(['name' =>   $this->name , 'age' =>  $this->age , 'field' => $this->field , 'id' => $id]);
+
+
+    }
 }
 
 ?>

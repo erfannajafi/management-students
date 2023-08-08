@@ -38,6 +38,46 @@ if (isset($_POST['submit']))
 
 <?php } ?>
 
+
+
+<?php
+
+if(isset($_POST['edit']))
+{
+	$id = $_GET['id'];
+
+	$name = $_POST['name'];
+	$age = $_POST['age'];
+	$filed = $_POST['field'];
+
+
+	$user->setName($name);
+	$user->setAge($age);
+	$user->setField($filed);
+
+
+	if($user->updateData($id))
+	{
+
+
+		?>
+		<p class="alert alert-info">دانش آموز با موفقیت ویرایش شد</p>
+	
+		<?php
+		//header("Location:index.php");
+	}
+
+
+}	
+
+?>
+
+
+
+
+
+
+
 <div class="container"dir="rtl">
 	<div class="card my-5">
 		<div class="card-header"><strong>لیست دانش آموزان</strong>
